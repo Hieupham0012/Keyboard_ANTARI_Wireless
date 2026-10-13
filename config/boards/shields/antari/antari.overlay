@@ -6,7 +6,6 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/zmk/rgb.h>
-#include <dt-bindings/gpio/gpio.h>
 
 &xiao_serial { status = "disabled"; };
 
@@ -36,24 +35,24 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)
 		debounce-release-ms = <5>;
 		
 		col-gpios
-			= <&xiao_d 6 GPIO_ACTIVE_HIGH>
-			, <&xiao_d 5 GPIO_ACTIVE_HIGH>
-			, <&xiao_d 4 GPIO_ACTIVE_HIGH>
-			, <&xiao_d 3 GPIO_ACTIVE_HIGH>
-			, <&xiao_d 9 GPIO_ACTIVE_HIGH>
+			= <&xiao_d 6 0>
+			, <&xiao_d 5 0>
+			, <&xiao_d 4 0>
+			, <&xiao_d 3 0>
+			, <&xiao_d 9 0>
 			;
 		
 		row-gpios
-			= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			= <&xiao_d 0 0x21>
+			, <&xiao_d 1 0x21>
+			, <&xiao_d 2 0x21>
 			;
 	};
 
 	mao_encoder: mao_encoder {
 		compatible = "alps,ec11";
-		a-gpios = <&xiao_d 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		b-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+		a-gpios = <&xiao_d 7 0x11>;
+		b-gpios = <&xiao_d 8 0x11>;
 		steps = <80>;
 		status = "disabled";
 	};
@@ -67,7 +66,7 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)
 	led_strip: ws2812 {
 		compatible = "worldsemi,ws2812-gpio";
 		chain-length = <12>;
-		gpios = <&xiao_d 10 GPIO_ACTIVE_HIGH>;
+		in-gpios = <&xiao_d 10 0>;
 		color-mapping = <LED_COLOR_ID_GREEN
                          LED_COLOR_ID_RED
                          LED_COLOR_ID_BLUE>;
