@@ -68,7 +68,6 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)
 	status = "okay"; 
 };
 
-/* Cấu hình chân D10 (Port 1 Pin 15 - P1.15) cho bộ điều khiển SPI3 */
 &pinctrl {
     spi3_default: spi3_default {
         group1 {
@@ -84,7 +83,6 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)
     };
 };
 
-/* Cấu hình SPI3 phát dữ liệu ra dải 12 LED WS2812 */
 &spi3 {
     compatible = "nordic,nrf-spim";
     status = "okay";
