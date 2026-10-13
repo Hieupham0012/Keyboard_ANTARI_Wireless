@@ -61,32 +61,19 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)
 		compatible = "zmk,keymap-sensors";
 		sensors = <&mao_encoder>;
 		triggers-per-rotation = <20>;
-	};	
+	};
+
+	/* --- Khai báo Software SPI để lái LED qua chân D10 --- */
+	led_strip: ws2812 {
+		compatible = "worldsemi,ws2812-gpio";
+		chain-length = <12>;
+		in-gpios = <&xiao_d 10 GPIO_ACTIVE_HIGH>; /* Lái trực tiếp chân D10 */
+		color-mapping = <LED_COLOR_ID_GREEN
+                         LED_COLOR_ID_RED
+                         LED_COLOR_ID_BLUE>;
+	};
 };
 
 &mao_encoder { 
 	status = "okay"; 
-};
-
-/* Cấu hình SPI3 phát dữ liệu LED qua chân D10 mặc định của Xiao BLE */
-&spi3 {
-    compatible = "nordic,nrf-spim";
-    status = "okay";
-    pinctrl-0 = <&spi3_default>;
-    pinctrl-1 = <&spi3_sleep>;
-    pinctrl-names = "default", "sleep";
-
-    led_strip: ws2812@0 {
-        compatible = "worldsemi,ws2812-spi";
-        reg = <0>;
-        spi-max-frequency = <4000000>;
-
-        chain-length = <12>;
-
-        spi-one-frame = <0x70>;
-        spi-zero-frame = <0x40>;
-        color-mapping = <LED_COLOR_ID_GREEN
-                         LED_COLOR_ID_RED
-                         LED_COLOR_ID_BLUE>;
-    };
 };
