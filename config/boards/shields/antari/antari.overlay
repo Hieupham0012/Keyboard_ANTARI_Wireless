@@ -68,7 +68,7 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)
 	status = "okay"; 
 };
 
-/* Cấu hình SPI3 phát dữ liệu LED qua chân D10 */
+/* Cấu hình SPI3 phát dữ liệu LED qua chân D10 mặc định của Xiao BLE */
 &spi3 {
     compatible = "nordic,nrf-spim";
     status = "okay";
